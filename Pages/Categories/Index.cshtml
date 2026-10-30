@@ -1,0 +1,40 @@
+﻿@page "{id:int?}"
+@model Stefanescu_Dimitrie_Lab2.Pages.Categories.IndexModel
+@{ ViewData["Title"] = "Categories"; }
+<h1>Categories</h1>
+<p><a asp-page="Create">Create New</a></p>
+<table class="table">
+    <thead><tr><th>Category Name</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var item in Model.CategoryData.Categories)
+    {
+        <tr class="@(item.ID == Model.CategoryID ? "table-success" : "")">
+            <td>@item.CategoryName</td>
+            <td>
+                <a asp-page="./Index" asp-route-id="@item.ID">Select</a> |
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+@if (Model.CategoryID != 0)
+{
+    <h2>Books in Selected Category</h2>
+    <p>@Model.CategoryData.Categories.First(x => x.ID == Model.CategoryID).CategoryName</p>
+    <table class="table">
+        <thead><tr><th>Book Title</th><th>Author</th></tr></thead>
+        <tbody>
+        @foreach (var book in Model.CategoryData.Books)
+        {
+            <tr><td>@book.Title</td><td>@(book.Author?.FullName ?? "Fără autor")</td></tr>
+        }
+        @if (!Model.CategoryData.Books.Any())
+        {
+            <tr><td colspan="2">Nu există cărți asociate.</td></tr>
+        }
+        </tbody>
+    </table>
+}

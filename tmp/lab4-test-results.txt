@@ -1,0 +1,105 @@
+HTTP 200 /
+HTTP 200 /BookPages
+HTTP 200 /BookPages/Index
+HTTP 200 /Home
+HTTP 200 /Privacy
+HTTP 200 /PublisherPages
+HTTP 200 /PublisherPages/Index
+HTTP 200 /Categories
+HTTP 200 /Categories/Index
+HTTP 200 /AuthorsPages
+sort title_asc
+sort title_desc
+sort author
+sort author_desc
+search Title default
+filter retained Title 
+search Title title_desc
+filter retained Title title_desc
+search Title author
+filter retained Title author
+search Title author_desc
+filter retained Title author_desc
+search FirstName default
+filter retained FirstName 
+search FirstName title_desc
+filter retained FirstName title_desc
+search FirstName author
+filter retained FirstName author
+search FirstName author_desc
+filter retained FirstName author_desc
+search LastName default
+filter retained LastName 
+search LastName title_desc
+filter retained LastName title_desc
+search LastName author
+filter retained LastName author
+search LastName author_desc
+filter retained LastName author_desc
+no results
+whitespace filter
+Publishers 1 books
+Publishers 1 authors
+Publishers 1 highlight
+Publishers 1 query route
+Publishers 2 books
+Publishers 2 authors
+Publishers 2 highlight
+Publishers 2 query route
+Publishers 3 books
+Publishers 3 authors
+Publishers 3 highlight
+Publishers 3 query route
+Publishers invalid -1
+Publishers invalid 2147483647
+Categories 1 books
+Categories 1 authors
+Categories 1 highlight
+Categories 1 query route
+Categories 2 books
+Categories 2 authors
+Categories 2 highlight
+Categories 2 query route
+Categories invalid -1
+Categories invalid 2147483647
+Create form BookPages
+BookPages Edit 2
+BookPages Details 2
+BookPages Delete 2
+BookPages Edit 3
+BookPages Details 3
+BookPages Delete 3
+BookPages Edit 5
+BookPages Details 5
+BookPages Delete 5
+BookPages Edit 6
+BookPages Details 6
+BookPages Delete 6
+Create form AuthorsPages
+AuthorsPages Edit 1
+AuthorsPages Details 1
+AuthorsPages Delete 1
+AuthorsPages Edit 2
+AuthorsPages Details 2
+AuthorsPages Delete 2
+Create form PublisherPages
+PublisherPages Edit 1
+PublisherPages Details 1
+PublisherPages Delete 1
+PublisherPages Edit 2
+PublisherPages Details 2
+PublisherPages Delete 2
+PublisherPages Edit 3
+PublisherPages Details 3
+PublisherPages Delete 3
+Create form Categories
+Categories Edit 1
+Categories Details 1
+Categories Delete 1
+Categories Edit 2
+Categories Details 2
+Categories Delete 2
+GET form
+reset link
+book stale selection
+PASS: 104 checks

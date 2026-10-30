@@ -1,0 +1,83 @@
+@page "/"
+@model Stefanescu_Dimitrie_Lab2.Pages.BookPages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form asp-page="./Index" method="get">
+    <input type="hidden" name="sortOrder" value="@Model.CurrentSort" />
+    <p>
+        <label for="SearchString">Find by Book Title / Author Name:</label>
+        <input type="search" id="SearchString" name="SearchString" value="@Model.CurrentFilter" />
+        <input type="submit" value="Search" class="btn btn-primary" /> |
+        <a asp-page="./Index">Back to full List</a>
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.TitleSort" asp-route-searchString="@Model.CurrentFilter" asp-route-id="@(Model.BookID == 0 ? null : (int?)Model.BookID)" asp-route-categoryID="@(Model.CategoryID == 0 ? null : (int?)Model.CategoryID)">@Html.DisplayNameFor(model => model.Book[0].Title)</a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.AuthorSort" asp-route-searchString="@Model.CurrentFilter" asp-route-id="@(Model.BookID == 0 ? null : (int?)Model.BookID)" asp-route-categoryID="@(Model.CategoryID == 0 ? null : (int?)Model.CategoryID)">Author Name</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].PublishingDate)
+            </th>   
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Publisher)
+            </th>
+            <th>Categories</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.BookD.Books) {
+        <tr class="@(item.ID == Model.BookID ? "table-success" : "")">
+            <td>
+                @Html.DisplayFor(model => item.Title)
+            </td>
+            <td>
+                @(item.Author?.FullName ?? "Fără autor")
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Price)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.PublishingDate)
+            </td>
+                <td>
+                    @(item.Publisher?.PublisherName ?? "Fără editură")
+                </td>
+
+
+            <td>
+                @foreach (var category in item.BookCategories.OrderBy(x => x.Category.CategoryName))
+                {
+                    <span>@category.Category.ID @category.Category.CategoryName</span><br />
+                }
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    @if (!Model.Book.Any())
+    {
+        <tr><td colspan="7">Nu au fost găsite cărți.</td></tr>
+    }
+    </tbody>
+</table>
+
