@@ -1,0 +1,5 @@
+@page
+@model Stefanescu_Dimitrie_Lab2.Pages.Borrowings.DeleteModel
+@{ ViewData["Title"] = "Delete Borrowing"; }
+<h1>Delete Borrowing</h1>
+<dl class="row"><dt>Member</dt><dd>@(Model.Borrowing.Member?.DisplayName ?? "Membru indisponibil")</dd><dt>Book</dt><dd>@(Model.Borrowing.Book?.Title ?? "Carte indisponibilă")</dd><dt>Author</dt><dd>@(Model.Borrowing.Book?.Author?.FullName ?? "Fără autor")</dd><dt>Return Date</dt><dd>@Model.Borrowing.ReturnDate.ToString("yyyy-MM-dd")</dd></dl><p>Confirmați ștergerea?</p><form method="post"><input type="hidden" asp-for="Borrowing.ID" /><button class="btn btn-danger" type="submit">Delete</button></form><a asp-page="./Index">Back to List</a>

@@ -1,0 +1,19 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using Stefanescu_Dimitrie_Lab2.Models;
+namespace Stefanescu_Dimitrie_Lab2.Pages.Borrowings;
+public class CreateModel(Stefanescu_Dimitrie_Lab2Context context) : BorrowingPageModel(context)
+{ 
+ [BindProperty] public Borrowing Borrowing { get; set; } = new();
+ public async Task<IActionResult> OnGetAsync() { await LoadListsAsync(Borrowing); return Page(); }
+ public async Task<IActionResult> OnPostAsync(int? id) {
+ Borrowing.ID = 0;
+ await ValidateReferencesAsync(Borrowing);
+ if(!ModelState.IsValid) { await LoadListsAsync(Borrowing); return Page(); }
+ Context.Borrowing.Add(Borrowing);
+ try { await Context.SaveChangesAsync(); }
+ catch(DbUpdateConcurrencyException) { return NotFound(); }
+ catch(DbUpdateException) { ModelState.AddModelError("", "Datele nu au putut fi salvate. Verificați valorile și reîncercați."); await LoadListsAsync(Borrowing); return Page(); }
+ return RedirectToPage("./Index"); }
+}

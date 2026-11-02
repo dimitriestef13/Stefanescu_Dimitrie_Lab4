@@ -1,0 +1,5 @@
+@page
+@model Stefanescu_Dimitrie_Lab2.Pages.Members.DetailsModel
+@{ ViewData["Title"] = "Details Member"; }
+<h1>Details Member</h1>
+<dl class="row"><dt>FirstName</dt><dd>@Model.Member.FirstName</dd><dt>LastName</dt><dd>@Model.Member.LastName</dd><dt>Adress</dt><dd>@Model.Member.Adress</dd><dt>Email</dt><dd>@Model.Member.Email</dd><dt>Phone</dt><dd>@Model.Member.Phone</dd></dl><a asp-page="./Edit" asp-route-id="@Model.Member.ID">Edit</a> | <a asp-page="./Index">Back to List</a>

@@ -1,0 +1,14 @@
+@page
+@model Stefanescu_Dimitrie_Lab2.Pages.Members.EditModel
+@{ ViewData["Title"] = "Edit Member"; }
+<h1>Edit Member</h1>
+<form method="post"><div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input type="hidden" asp-for="Member.ID" />
+<div class="mb-3"><label asp-for="Member.FirstName"></label><input asp-for="Member.FirstName" class="form-control" /><span asp-validation-for="Member.FirstName" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="Member.LastName"></label><input asp-for="Member.LastName" class="form-control" /><span asp-validation-for="Member.LastName" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="Member.Adress"></label><input asp-for="Member.Adress" class="form-control" /><span asp-validation-for="Member.Adress" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="Member.Email"></label><input asp-for="Member.Email" class="form-control" /><span asp-validation-for="Member.Email" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="Member.Phone"></label><input asp-for="Member.Phone" class="form-control" /><span asp-validation-for="Member.Phone" class="text-danger"></span></div>
+<button type="submit" class="btn btn-primary">Save</button></form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
+<a asp-page="./Index">Back to List</a>

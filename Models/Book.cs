@@ -6,6 +6,7 @@ namespace Stefanescu_Dimitrie_Lab2.Models
     public class Book
     {
         public int ID { get; set; }
+        public ICollection<Borrowing> Borrowings { get; set; } = new List<Borrowing>();
 
         [Display(Name = "Categories")]
         public ICollection<BookCategory> BookCategories { get; set; } = new List<BookCategory>();

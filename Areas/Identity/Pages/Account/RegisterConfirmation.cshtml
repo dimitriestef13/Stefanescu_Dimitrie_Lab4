@@ -1,0 +1,9 @@
+@page
+@model Stefanescu_Dimitrie_Lab2.Areas.Identity.Pages.Account.RegisterConfirmationModel
+@{ ViewData["Title"] = "Confirm registration"; }
+<h1>Confirm registration</h1>
+<p>Confirmați adresa de email înainte de autentificare.</p>
+@if (Model.ConfirmationUrl is not null) {
+ <p>Mod Development: confirmarea locală este disponibilă fără un serviciu de email.</p>
+ <a id="confirm-link" href="@Model.ConfirmationUrl">Confirm email</a>
+}

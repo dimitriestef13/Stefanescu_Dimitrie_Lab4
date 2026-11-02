@@ -1,0 +1,12 @@
+@page
+@model Stefanescu_Dimitrie_Lab2.Areas.Identity.Pages.Account.LoginModel
+@{ ViewData["Title"] = "Login"; }
+<h1>Login</h1>
+<form method="post" asp-route-returnUrl="@Model.ReturnUrl">
+ <div asp-validation-summary="All" class="text-danger"></div>
+ <div class="mb-3"><label asp-for="Input.Email"></label><input asp-for="Input.Email" class="form-control" autocomplete="username" /></div>
+ <div class="mb-3"><label asp-for="Input.Password"></label><input asp-for="Input.Password" class="form-control" autocomplete="current-password" /></div>
+ <div class="mb-3"><label><input asp-for="Input.RememberMe" /> Remember me</label></div>
+ <button type="submit" class="btn btn-primary">Login</button>
+</form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

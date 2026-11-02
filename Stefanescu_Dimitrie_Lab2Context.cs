@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 public class Stefanescu_Dimitrie_Lab2Context(DbContextOptions<Stefanescu_Dimitrie_Lab2Context> options) : DbContext(options)
 {
@@ -11,9 +11,17 @@ public class Stefanescu_Dimitrie_Lab2Context(DbContextOptions<Stefanescu_Dimitri
     public DbSet<Stefanescu_Dimitrie_Lab2.Models.Category> Category { get; set; } = default!;
     public DbSet<Stefanescu_Dimitrie_Lab2.Models.BookCategory> BookCategory { get; set; } = default!;
 
+    public DbSet<Stefanescu_Dimitrie_Lab2.Models.Member> Member { get; set; } = default!;
+    public DbSet<Stefanescu_Dimitrie_Lab2.Models.Borrowing> Borrowing { get; set; } = default!;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<Stefanescu_Dimitrie_Lab2.Models.Member>().HasIndex(x => x.Email).IsUnique();
+        modelBuilder.Entity<Stefanescu_Dimitrie_Lab2.Models.Borrowing>()
+            .HasOne(x => x.Member).WithMany(x => x.Borrowings).HasForeignKey(x => x.MemberID).IsRequired(false).OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<Stefanescu_Dimitrie_Lab2.Models.Borrowing>()
+            .HasOne(x => x.Book).WithMany(x => x.Borrowings).HasForeignKey(x => x.BookID).IsRequired(false).OnDelete(DeleteBehavior.SetNull);
         modelBuilder.Entity<Stefanescu_Dimitrie_Lab2.Models.BookCategory>(entity =>
         {
             entity.HasIndex(x => new { x.BookID, x.CategoryID }).IsUnique();

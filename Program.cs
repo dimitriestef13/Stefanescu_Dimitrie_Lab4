@@ -1,9 +1,16 @@
+using Microsoft.AspNetCore.Identity;
+using Stefanescu_Dimitrie_Lab2.Data;
 ﻿using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("Stefanescu_Dimitrie_Lab2Context") ?? throw new InvalidOperationException("Connection string 'Stefanescu_Dimitrie_Lab2Context' not found.");
 
 builder.Services.AddDbContext<Stefanescu_Dimitrie_Lab2Context>(options => options.UseSqlServer(connectionString));
 
+builder.Services.AddDbContext<LibraryIdentityContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDefaultIdentity<IdentityUser>(options => {
+    options.SignIn.RequireConfirmedAccount = true;
+    options.User.RequireUniqueEmail = true;
+}).AddEntityFrameworkStores<LibraryIdentityContext>();
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
 {
@@ -25,6 +32,7 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
