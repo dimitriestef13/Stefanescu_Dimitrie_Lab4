@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Stefanescu_Dimitrie_Lab5</title>
+    <title>@ViewData["Title"] - Stefanescu_Dimitrie_Lab6</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -29,20 +29,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark"
                                asp-area=""
-                               asp-page="/PublisherPages/Index">
-                                Publishers
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark"
-                               asp-area=""
                                asp-page="/AuthorsPages/Index">
                                 Authors
                             </a>
                         </li>
                         <li class="nav-item"><a class="nav-link text-dark" asp-page="/BookPages/Index">Books</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" asp-page="/Categories/Index">Categories</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-page="/Members/Index">Members</a></li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-page="/PublisherPages/Index">Publishers</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-page="/Categories/Index">Categories</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-page="/Members/Index">Members</a></li>
+                        }
                         <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-page="/Borrowings/Index">Borrowings</a></li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -58,7 +55,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2026 - Stefanescu_Dimitrie_Lab5 - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2026 - Stefanescu_Dimitrie_Lab6 - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 

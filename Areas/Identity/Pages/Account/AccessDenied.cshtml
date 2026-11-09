@@ -1,0 +1,12 @@
+@page
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Http
+@attribute [AllowAnonymous]
+@{
+    Response.StatusCode = StatusCodes.Status403Forbidden;
+    ViewData["Title"] = "Access denied";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>Nu ai permisiunea de a accesa această pagină.</p>
+<a asp-area="" asp-page="/BookPages/Index">Înapoi la catalog</a>

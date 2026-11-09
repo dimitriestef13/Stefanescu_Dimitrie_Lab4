@@ -17,7 +17,15 @@ public class Stefanescu_Dimitrie_Lab2Context(DbContextOptions<Stefanescu_Dimitri
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Stefanescu_Dimitrie_Lab2.Models.Member>().HasIndex(x => x.Email).IsUnique();
+        // Form validation can be tightened without narrowing columns that hold existing data.
+        modelBuilder.Entity<Stefanescu_Dimitrie_Lab2.Models.Book>().Property(x => x.Title).Metadata.SetMaxLength(null);
+        modelBuilder.Entity<Stefanescu_Dimitrie_Lab2.Models.Member>(entity =>
+        {
+            entity.HasIndex(x => x.Email).IsUnique();
+            entity.Property(x => x.FirstName).HasMaxLength(100);
+            entity.Property(x => x.LastName).HasMaxLength(100);
+            entity.Property(x => x.Adress).HasMaxLength(500);
+        });
         modelBuilder.Entity<Stefanescu_Dimitrie_Lab2.Models.Borrowing>()
             .HasOne(x => x.Member).WithMany(x => x.Borrowings).HasForeignKey(x => x.MemberID).IsRequired(false).OnDelete(DeleteBehavior.SetNull);
         modelBuilder.Entity<Stefanescu_Dimitrie_Lab2.Models.Borrowing>()

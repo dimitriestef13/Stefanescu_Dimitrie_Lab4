@@ -37,6 +37,10 @@ public class RegisterModel(UserManager<IdentityUser> users, LibraryIdentityConte
   try
   {
    var result = await users.CreateAsync(user, Input.Password);
+   if (result.Succeeded)
+   {
+    result = await users.AddToRoleAsync(user, "User");
+   }
    if (!result.Succeeded)
    {
     foreach (var error in result.Errors) ModelState.AddModelError(string.Empty, error.Description);

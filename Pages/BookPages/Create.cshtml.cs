@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Stefanescu_Dimitrie_Lab2.Models;
 namespace Stefanescu_Dimitrie_Lab2.Pages.BookPages;
+[Authorize(Roles = "Admin")]
 public class CreateModel(Stefanescu_Dimitrie_Lab2Context context) : BookCategoriesPageModel
 {
     [BindProperty]
